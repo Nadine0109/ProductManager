@@ -53,6 +53,7 @@ public class ProductManagerFullTest {
         assertArrayEquals(expected, actual);
     }
 
+
     @Test
     void shouldSearchByCorrectCase() {
         Product[] returned = new Product[]{first, second, third, forth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
@@ -76,7 +77,7 @@ public class ProductManagerFullTest {
     }
 
     @Test
-    void shouldMatchNull() {
+    void shouldMatchNullProduct() {
         Product product = null;
         String search = "lolipop";
         boolean actual = manager.matches(product, search);
