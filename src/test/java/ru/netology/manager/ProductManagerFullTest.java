@@ -15,6 +15,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
+
 public class ProductManagerFullTest {
     @Mock
     private ProductRepository repository;
@@ -32,16 +33,6 @@ public class ProductManagerFullTest {
     private Product tenth = new Book(9, "Захват", 6564, "Sigal");
     private Product eleventh = new Book(10, "Name", 999, "Nameless");
 
-    @Test
-    void shouldAddOneProduct() {
-        Product[] returned = new Product[]{eleventh};
-        doReturn(returned).when(repository).findAll();
-        manager.add(eleventh);
-
-        Product[] expected = new Product[]{eleventh};
-        Product[] actual = manager.getAll();
-        assertArrayEquals(expected, actual);
-    }
 
     @Test
     void shouldGetAll() {
