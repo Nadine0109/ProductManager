@@ -38,4 +38,40 @@ class ProductRepositoryTest {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    void shouldFindByID() {
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        repository.save(forth);
+        repository.save(fifth);
+        int id = 8;
+        Product expected = forth;
+        Product actual = repository.findById(id);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldRemoveByIdException() {
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        int id = 7;
+        repository.findById(id);
+        Product[] expected = new Product[]{first, second, third};
+        Product[] actual = repository.removeById(id);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldRemoveById() {
+        repository.save(fifth);
+        repository.save(forth);
+        repository.save(third);
+        int id = 76;
+        repository.findById(id);
+        Product[] expected = new Product[]{forth, third};
+        Product[] actual = repository.removeById(id);
+        assertArrayEquals(expected, actual);
+    }
 }
