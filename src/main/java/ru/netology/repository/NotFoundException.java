@@ -8,6 +8,7 @@ public class NotFoundException extends RuntimeException {
 
     public NotFoundException(String str) {
         message = str;
+        printStackTrace();
     }
 
     public String toString() {
