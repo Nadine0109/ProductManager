@@ -39,7 +39,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void shouldFindByID() {
+    void shouldFindById() {
         repository.save(first);
         repository.save(second);
         repository.save(third);
@@ -52,15 +52,16 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void shouldRemoveByIdException() {
+    void shouldFindByIdNonExisting() {
         repository.save(first);
         repository.save(second);
         repository.save(third);
-        int id = 7;
-        repository.findById(id);
-        Product[] expected = new Product[]{first, second, third};
-        Product[] actual = repository.removeById(id);
-        assertArrayEquals(expected, actual);
+        repository.save(forth);
+        int id = 76;
+        Product expected = null;
+        Product actual = repository.findById(id);
+        assertEquals(expected, actual);
+
     }
 
     @Test
@@ -73,5 +74,15 @@ class ProductRepositoryTest {
         Product[] expected = new Product[]{forth, third};
         Product[] actual = repository.removeById(id);
         assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    void shouldTestThrowingException() {
+        repository.save(fifth);
+        int id = 7;
+        assertThrows(NotFoundException.class, () -> {
+            repository.removeById(id);
+        });
     }
 }

@@ -1,6 +1,5 @@
 package ru.netology.repository;
 
-import ru.netology.NotFoundException;
 import ru.netology.domain.Product;
 
 public class ProductRepository {
@@ -20,6 +19,7 @@ public class ProductRepository {
         return items;
     }
 
+
     public Product findById(int id) {
         for (Product item : items) {
             if (item.getId() == id) {
@@ -30,17 +30,9 @@ public class ProductRepository {
     }
 
     public Product[] removeById(int id) throws NotFoundException {
+        if (findById(id) == null) throw new NotFoundException("NotFoundException Occurred: " + id + " not found");
         int length = items.length - 1;
         Product[] tmp = new Product[length];
-        try {
-            findById(id);
-            if (findById(id) == null) {
-                throw new NotFoundException("Element with id:" + id + " not found");
-            }
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-            return items;
-        }
         int index = 0;
         for (Product item : items) {
             if (item.getId() != id) {

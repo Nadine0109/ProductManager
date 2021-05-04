@@ -1,7 +1,9 @@
-package ru.netology;
+package ru.netology.repository;
 
+import ru.netology.domain.Product;
 
 public class NotFoundException extends RuntimeException {
+
     String message;
 
     public NotFoundException(String str) {
@@ -11,4 +13,5 @@ public class NotFoundException extends RuntimeException {
     public String toString() {
         return ("NotFoundException Occurred: " + message);
     }
+
 }
